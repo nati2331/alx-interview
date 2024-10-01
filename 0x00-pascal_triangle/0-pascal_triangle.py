@@ -3,23 +3,26 @@
 """Pascal's Triangle"""
 
 def pascal_triangle(n):
-    # Return an empty list if n <= 0
     if n <= 0:
         return []
 
-    # Initialize the result list to hold all rows of Pascal's Triangle
-    result = []
+    triangle = []
 
-    # Iterate over each level from 0 to n-1
     for i in range(n):
-        # Initialize the current row with all elements as 1
-        row = [1] * (i + 1)
-        
-        # Fill in the middle elements of the row, if there are more than two elements
-        for j in range(1, i):
-            row[j] = result[i - 1][j - 1] + result[i - 1][j]
-        
-        # Append the current row to the result
-        result.append(row)
-    
-    return result
+        row = [1]
+        if i == 0:
+            triangle.append(row)
+            continue
+
+        previous_row_index = i - 1
+
+        for j in range(len(triangle[previous_row_index])):
+            if j + 1 == len(triangle[previous_row_index]):
+                row.append(1)
+                break
+            next_value = triangle[previous_row_index][j] + triangle[previous_row_index][j + 1]
+            row.append(next_value)
+
+        triangle.append(row)
+
+    return triangle
