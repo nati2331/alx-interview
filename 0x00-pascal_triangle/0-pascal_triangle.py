@@ -12,3 +12,12 @@ def pascal_triangle(n):
             row[j] = result[i - 1][j - 1] + result[i - 1][j]
         result.append(row)
     return result
+
+if __name__ == "__main__":
+    try:
+        # Prompt the user for input
+        n = int(input("Enter the number of rows for Pascal's Triangle: "))
+        # Print Pascal's Triangle
+        print(pascal_triangle(n))
+    except ValueError:
+        print("Please enter a valid integer.")
