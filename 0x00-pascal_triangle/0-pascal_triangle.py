@@ -1,23 +1,21 @@
 #!/usr/bin/python3
-""" Pascal's Triangle """
+"""Pascals Triangle"""
+
 
 def pascal_triangle(n):
     if n <= 0:
         return []
 
-    result = []
-    for i in range(n):
-        row = [1] * (i + 1)
+    triangle = [[1]]
+    
+    for i in range(1, n):
+        prev_row = triangle[i - 1]
+        new_row = [1]
+        
         for j in range(1, i):
-            row[j] = result[i - 1][j - 1] + result[i - 1][j]
-        result.append(row)
-    return result
+            new_row.append(prev_row[j - 1] + prev_row[j])
+        
+        new_row.append(1)
+        triangle.append(new_row)
 
-if __name__ == "__main__":
-    try:
-        # Prompt the user for input
-        n = int(input("Enter the number of rows for Pascal's Triangle: "))
-        # Print Pascal's Triangle
-        print(pascal_triangle(n))
-    except ValueError:
-        print("Please enter a valid integer.")
+    return triangle
