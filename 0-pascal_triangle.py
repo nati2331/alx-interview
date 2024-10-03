@@ -13,3 +13,7 @@ def pascal_triangle(n):
         row.append(1)
         triangle.append(row)
     return triangle
+
+if __name__ == "__main__":
+    n = int(input("Enter the number of rows for Pascal's triangle: "))
+    print(pascal_triangle(n))
